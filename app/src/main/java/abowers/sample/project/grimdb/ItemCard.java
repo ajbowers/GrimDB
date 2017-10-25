@@ -38,9 +38,16 @@ public class ItemCard {
     String[] prefixes;
     String[] suffixes;
 
-    String   name;
+    String name;
+    String itemImagePath;
 
     Skill additionalSkill;
+
+    public String setupItemDisplay() {
+
+
+        return "";
+    }
 
     public int getItemId() {
         return itemId;
@@ -128,6 +135,14 @@ public class ItemCard {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getItemImagePath() {
+        return itemImagePath;
+    }
+
+    public void setItemImagePath(String itemImagePath) {
+        this.itemImagePath = itemImagePath;
     }
 
     public Skill getAdditionalSkill() {

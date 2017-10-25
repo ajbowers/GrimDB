@@ -1,8 +1,10 @@
 package abowers.sample.project.grimdb;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -13,40 +15,39 @@ import java.util.ArrayList;
  * Created by FDIC on 10/24/17.
  */
 
-public class GrimDBArrayAdapter extends ArrayAdapter {
+public class GrimDBArrayAdapter extends ArrayAdapter<ItemCard> {
 
 
 
-    private static class ViewHolder {
-        private TextView itemView;
+    ArrayList<ItemCard> itemList = new ArrayList<ItemCard>();
+
+    public GrimDBArrayAdapter(Context context, int textViewResourceId, ArrayList<ItemCard> objects) {
+        super(context, textViewResourceId, objects);
+        itemList = objects;
     }
 
-    public GrimDBArrayAdapter(Context context, int textViewResourceId, ArrayList<ItemCard> items) {
-        super(context, textViewResourceId, items);
+    @Override
+    public int getCount() {
+        return super.getCount();
     }
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(this.getContext())
-                    .inflate(R.layout.listview_association, parent, false);
 
-            viewHolder = new ViewHolder();
-            viewHolder.itemView = (TextView) convertView.findViewById(R.id.ItemView);
+        View v = convertView;
 
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        MyClass item = getItem(position);
-        if (item!= null) {
-            // My layout has only one TextView
-            // do whatever you want with your string and long
-            viewHolder.itemView.setText(String.format("%s %d", item.reason, item.long_val));
-        }
+        v = inflater.inflate(R.layout.grim_db_item_category_view, null);
 
-        return convertView;
+        //TextView textView = (TextView) v.findViewById(R.id.textView);
+        ImageView imageView = (ImageView) v.findViewById(R.id.categoryImageView);
+        //extView.setText(itemList.get(position).getName());
+        //textView.append(itemList.get(position).getLevelRequirement() + "");
+        //Log.d("NAME", itemList.get(position).getName());
+        return v;
 
     }
+
 
 }
